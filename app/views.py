@@ -6,14 +6,16 @@ from app import app, db, bcrypt
 from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 from app.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
+from .requests import get_quotes
 
 
 @app.route("/")
 @app.route("/home")
 def home():
+    quote = get_quotes()
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
-    return render_template('home.html', posts=posts)
+    return render_template('home.html', posts=posts, quote=quote)
 
 
 @app.route("/about")
