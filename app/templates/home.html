@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block content %}
-   <div class="row">
-    <div class="col-lg-8">
+{% block quote %}
+<div class="row">
+    <div class="col-lg-12">
     <div class="card">
       <div class="card-header text-center" style="color: #ff1493;">
         <b>Quote of the Day</b>
@@ -13,20 +13,39 @@
     </div>
    </div>
    </div>
-
-    {% for post in posts.items %}
-        <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
-              <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+{% endblock %}
+{% block content %}
+<section class="colorlib-experience" data-section="experience">
+      <div class="colorlib-narrow-content">
+         <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+               <h2>Latest</h2>
+               <hr>
             </div>
-            <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
-          </div>
-        </article>
-    {% endfor %}
+         </div>
+         <div class="row">
+              {% for post in posts.items %}
+            <div class="col-md-12">
+               <div class="timeline-centered">
+                  <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
+                     <div class="timeline-entry-inner">
+                        <div class="timeline-icon">
+                            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+                        </div>
+                        <div class="timeline-label">
+                         <a class="mr-2" href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                          <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                           <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                            <p class="article-content">{{ post.content }}</p>
+
+                        </div>
+                     </div>
+                  </article>
+               </div>
+            </div>
+              {% endfor %}
+         </div>
+      </div>
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
       {% if page_num %}
         {% if posts.page == page_num %}
@@ -38,4 +57,6 @@
         ...
       {% endif %}
     {% endfor %}
-{% endblock content %}
+
+</section>
+    {% endblock content %}
