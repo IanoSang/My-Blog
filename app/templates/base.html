@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='animate.css') }}">
 
     {% if title %}
         <title>My Blog - {{ title }}</title>
@@ -17,34 +18,42 @@
     {% endif %}
 </head>
 <body>
-    <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-        <div class="container">
-          <a class="navbar-brand mr-4" href="/">My Blog</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
-              <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
-            </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-              {% if current_user.is_authenticated %}
-                <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Post</a>
-                <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
-                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
-              {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main role="main" class="container">
+<div id="colorlib-page">
+         <div class="container-wrap">
+            <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+            <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
+               <div class="text-center">
+                  <div class="author-img" style="background-image: url(images/IMG-20191106-WA0004.jpg);"></div>
+                  <h1>Personal Blog</h1>
+                  <p><strong>Software Developer</strong></p>
+               </div>
+               <nav id="colorlib-main-menu" role="navigation" class="navbar">
+
+                  <div id="navbar" class="collapse">
+                     <ul>
+                        <li><a href="{{ url_for('home') }}" data-nav-section="about">HOME</a></li>
+                        <li><a href="{{ url_for('about') }}" data-nav-section="skills">About</a></li>
+
+                        <li><a href="#" data-nav-section="contact">Contact</a></li>
+                     </ul>
+                      <ul>
+                           {% if current_user.is_authenticated %}
+                          <li><a href="{{ url_for('new_post') }}" data-nav-section="experience">New Post</a></li>
+                          <li><a href="{{ url_for('account') }}" data-nav-section="experience">Account</a></li>
+                          <li><a href="{{ url_for('logout') }}" data-nav-section="experience">Logout</a></li>
+
+                          {% else %}
+                           <li><a href="{{ url_for('login') }}" data-nav-section="experience">Login</a></li>
+                           <li><a href="{{ url_for('register') }}" data-nav-section="experience">Sign Up</a></li>
+                          {% endif %}
+                      </ul>
+                  </div>
+               </nav>
+            </aside>
+
+            <!----- main page--------->
+            <div id="colorlib-main">
+                <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
           {% with messages = get_flashed_messages(with_categories=true) %}
@@ -59,15 +68,44 @@
               {% endfor %}
             {% endif %}
           {% endwith %}
-
         </div>
     </div>
+    </main>
+               <!-------------------Intro--------------->
+               <section class="colorlib-about" data-section="about">
+                  <div class="colorlib-narrow-content">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                              <div class="col-md-12" style="margin-bottom: -30px">
+                                 {% block quote%}
+                                  {% endblock%}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+               <!------Skills---------------->
+                 <section class="content">
+                    {% block content %}{% endblock %}
 
 
-  <section class="content">
-  {% block content %}{% endblock %}
-  </section>
-</main>
+
+
+               <!------------Footer------------->
+
+
+               </section>
+            </div>
+
+         </div>
+
+      </div>
+
+
+
 
 
 
