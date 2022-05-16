@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container-fluid">
     <div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
+                <legend class="border-bottom mb-4 text-center">
+                    Sign Up Today
+                </legend>
                 <div class="form-group">
                     {{ form.username.label(class="form-control-label") }}
 
@@ -69,4 +72,5 @@
             Already Have An Account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
         </small>
     </div>
+</div>
 {% endblock content %}
