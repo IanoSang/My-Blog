@@ -23,24 +23,24 @@
 <div id="colorlib-page mt-0">
          <div class="container-wrap">
             <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-            <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
+            <aside id="colorlib-aside" role="complementary" class="border js-fullheight mt-0">
                <div class="text-center">
                   <div class="author-img">
-
+                     
                   </div>
-                  <h1>Personal Blog</h1>
-                  <p><strong>Software Developer</strong></p>
+                  <h1>Best Programming </h1>
+                  <p><strong>Developers Blog</strong></p>
                </div>
                <nav id="colorlib-main-menu" role="navigation" class="navbar">
 
                   <div id="navbar" class="collapse">
                      <ul>
-                        <li><a href="{{ url_for('home') }}" data-nav-section="about">HOME</a></li>
+                        <li><a href="{{ url_for('home') }}" data-nav-section="about">HOME</h6> </a></li>
                         <li><a href="{{ url_for('about') }}" data-nav-section="skills">About</a></li>
                      </ul>
                       <ul>
                            {% if current_user.is_authenticated %}
-                          <li><a href="{{ url_for('new_post') }}" data-nav-section="experience">New Post</a></li>
+                          <li><a href="{{ url_for('new_post') }}" data-nav-section="experience">Add Posts</a></li>
                           <li><a href="{{ url_for('account') }}" data-nav-section="experience">Account</a></li>
                           <li><a href="{{ url_for('logout') }}" data-nav-section="experience">Logout</a></li>
 
@@ -54,10 +54,10 @@
             </aside>
 
             <!----- main page--------->
-            <div id="colorlib-main">
-                <main role="main" class="container">
+   <div id="colorlib-main" class="mt-0">
+     <main role="main" class="container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 mt-0">
           {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
               {% for category, message in messages %}
@@ -71,7 +71,7 @@
             {% endif %}
           {% endwith %}
         </div>
-    </div>
+      </div>
     </main>
                <!-------------------Intro--------------->
                <section class="colorlib-about" data-section="about">

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container">
 <div class="content-section">
     <form method="POST" action="">
         {{ form.hidden_tag() }}
@@ -36,5 +37,6 @@
             {{ form.submit(class="btn btn-outline-info") }}
         </div>
     </form>
+</div>
 </div>
 {% endblock content %}
